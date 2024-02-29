@@ -11,7 +11,7 @@ export const NewsScrollView = ({newsData}) => {
     return (
         <ScrollView>
         {newsData.length > 0 ? (
-              newsData.map(newsItem => {
+              newsData.filter(x => x.title !== '[Removed]').map(newsItem => {
                 return <NewsItem item={newsItem} key={newsItem.id}/>
               })
         ) : (
