@@ -5,16 +5,18 @@ import {
 } from 'native-base';
 import { services } from '../services/services';
 import {NewsScrollView} from '../components/newsScrollView'
-import {screenStyles as styles} from './styles/screenStyles'
+import { screenStyles as styles } from './styles/screenStyles'
+import { NewsCategories } from '../shared/constants';
+import { observer } from 'mobx-react-lite';
+import newsStore from '../store/NewsStore';
 
-const All = () => {
-  const [newsData, setNewsData] = useState([]);
+const All = observer(() => {
   useEffect(() => {
-      services("category")
-        .then((data) => setNewsData(data))
-        .catch((err) => console.log(err));
-    }, []);
-
+    newsStore.setNewsData([])
+    services(NewsCategories.All)
+      .then((data) => newsStore.setNewsData(data))
+      .catch((err) => console.log(err));
+  }, []);
 
   return (
     <NativeBaseProvider>
@@ -22,10 +24,10 @@ const All = () => {
         <View style={styles.container}>
           <Text style={styles.text}>All - Top Headlines</Text>
         </View>
-        <NewsScrollView newsData={newsData} />
+        <NewsScrollView newsData={newsStore.newsData} />
       </View>
     </NativeBaseProvider>
   );
-};
+});
 
 export default All;

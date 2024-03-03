@@ -26,6 +26,4 @@ const NewsDetailedInfoScreen = ({ route }) => {
   );
 };
 
-
-
 export default NewsDetailedInfoScreen;
