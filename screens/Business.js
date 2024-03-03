@@ -2,29 +2,32 @@ import { View, Text } from 'react-native';
 import {
   NativeBaseProvider
 } from 'native-base';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { services } from '../services/services';
 import {NewsScrollView} from '../components/newsScrollView'
 import {screenStyles as styles} from './styles/screenStyles'
+import { NewsCategories } from '../shared/constants';
+import { observer } from 'mobx-react-lite';
+import newsStore from '../store/NewsStore';
 
-const Business = () => {
-  const [newsData, setNewsData] = useState([]);
-
+const Business = observer(() => {
   useEffect(() => {
-    services('business')
-      .then((data) => setNewsData(data))
+    newsStore.setNewsData([])
+    services(NewsCategories.Business)
+      .then((data) => newsStore.setNewsData(data))
       .catch((err) => console.log(err));
   }, []);
+
   return (
     <NativeBaseProvider>
       <View>
         <View style={styles.container}>
           <Text style={styles.text}>Business - Top Headlines</Text>
         </View>
-        <NewsScrollView newsData={newsData} />
+        <NewsScrollView newsData={newsStore.newsData} />
       </View>
     </NativeBaseProvider>
   );
-};
+});
 
 export default Business;
