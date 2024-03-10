@@ -36,6 +36,7 @@ function TabScreens() {
   return (
     <Tab.Navigator
       screenOptions={{
+        unmountOnBlur: true,
         tabBarShowLabel: false,
         tabBarActiveTintColor: '#ffc107',
       }}
@@ -43,6 +44,8 @@ function TabScreens() {
       <Tab.Screen
         name="All"
         component={AllScreen}
+        initialRouteName="all"
+        unmountOnBlur={true}
         options={{
           headerShown: false,
           tabBarIcon: ({ color }) => (
@@ -53,6 +56,8 @@ function TabScreens() {
       <Tab.Screen
         name="Business"
         component={BusinessScreen}
+        initialRouteName="business"
+        unmountOnBlur={true}
         options={{
           headerShown: false,
           tabBarIcon: ({ color }) => (
@@ -63,6 +68,8 @@ function TabScreens() {
       <Tab.Screen
         name="Health"
         component={HealthScreen}
+        initialRouteName="health"
+        unmountOnBlur={true}
         options={{
           headerShown: false,
           tabBarIcon: ({ color }) => (
@@ -73,6 +80,8 @@ function TabScreens() {
       <Tab.Screen
         name="Tech"
         component={TechScreen}
+        initialRouteName="tech"
+        unmountOnBlur={true}
         options={{
           headerShown: false,
           tabBarIcon: ({ color }) => (
@@ -83,6 +92,8 @@ function TabScreens() {
       <Tab.Screen
         name="Sports"
         component={SportsScreen}
+        initialRouteName="sports"
+        unmountOnBlur={true}
         options={{
           headerShown: false,
           tabBarIcon: ({ color }) => (
